@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -10,14 +10,5 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './activity-log.component.scss'
 })
 export class ActivityLogComponent {
-  activityLog = {
-    "duration": {
-      "hours": 1,
-      "minutes": 30
-    },
-    "distanceInKm": 30,
-    "calories": 50,
-    "intensity": "High",
-    "type": "Cycling"
-  }
+  @Input() activityLog: any;
 }
