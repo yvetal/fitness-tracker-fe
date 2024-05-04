@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ActivityLogListComponent } from './activity-log-list/activity-log-list.component';
+import { ActivityLogAddFormComponent } from './activity-log-add-form/activity-log-add-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ActivityLogListComponent],
+  imports: [RouterOutlet, ActivityLogAddFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

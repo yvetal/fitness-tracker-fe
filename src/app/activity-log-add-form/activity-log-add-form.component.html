@@ -1,0 +1,20 @@
+<mat-form-field class="full-width">
+    <input matInput placeholder="Workout type" [formControl]="typeControl">
+</mat-form-field>
+<mat-form-field class="full-width">
+    <input matInput placeholder="Distance in km" [formControl]="distanceControl">
+</mat-form-field>
+<mat-form-field class="full-width">
+    <input matInput placeholder="Calories burned" [formControl]="caloriesControl">
+</mat-form-field>
+<mat-form-field class="full-width">
+    <input matInput placeholder="Intensity" [formControl]="intensityControl">
+</mat-form-field>
+<mat-form-field class="full-width">
+    <input matInput placeholder="Duration - hours" [formControl]="durationHoursControl">
+</mat-form-field>
+<mat-form-field class="full-width">
+    <input matInput placeholder="Duration - minutes" [formControl]="durationMinutesControl">
+</mat-form-field>
+
+<button mat-raised-button (click)="submit()">Submit</button>
