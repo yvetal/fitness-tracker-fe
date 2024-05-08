@@ -1,20 +1,47 @@
-<mat-form-field class="full-width">
-    <input matInput placeholder="Workout type" [formControl]="typeControl">
-</mat-form-field>
-<mat-form-field class="full-width">
-    <input matInput type="number" placeholder="Distance in km" [formControl]="distanceControl">
-</mat-form-field>
-<mat-form-field class="full-width">
-    <input matInput type="number" placeholder="Calories burned" [formControl]="caloriesControl">
-</mat-form-field>
-<mat-form-field class="full-width">
-    <input matInput placeholder="Intensity" [formControl]="intensityControl">
-</mat-form-field>
-<mat-form-field class="full-width">
-    <input matInput type="number" placeholder="Duration - hours" [formControl]="durationHoursControl">
-</mat-form-field>
-<mat-form-field class="full-width">
-    <input matInput type="number" placeholder="Duration - minutes" [formControl]="durationMinutesControl">
-</mat-form-field>
-
-<button mat-raised-button (click)="submit()">Submit</button>
+<mat-card class="form-card">
+    <div class="header-container">
+        <mat-icon fontIcon="fitness_center"></mat-icon>
+        <h2 class="header">Fitness Tracker</h2>
+    </div>
+    <mat-grid-list cols="3" rowHeight="100px">
+        <mat-grid-tile>
+            <mat-form-field class="form-field">
+                <mat-icon fontIcon="directions_run"></mat-icon>
+                <input matInput placeholder="Workout type" [formControl]="typeControl">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field class="form-field">
+                <mat-icon fontIcon="directions_bike"></mat-icon>
+                <input matInput type="number" placeholder="Distance in km" [formControl]="distanceControl">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field class="form-field">
+                <mat-icon fontIcon="whatshot"></mat-icon>
+                <input matInput type="number" placeholder="Calories burned" [formControl]="caloriesControl">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field class="form-field">
+                <mat-icon fontIcon="accessibility"></mat-icon>
+                <input matInput placeholder="Intensity" [formControl]="intensityControl">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field class="form-field">
+                <mat-icon fontIcon="timer"></mat-icon>
+                <input matInput type="number" placeholder="Duration - hours" [formControl]="durationHoursControl">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field class="form-field">
+                <mat-icon fontIcon="today"></mat-icon>
+                <input matInput type="number" placeholder="Duration - minutes" [formControl]="durationMinutesControl">
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div class="submit-button-container">
+        <button mat-raised-button color="primary" class="submit-button" (click)="submit()">Submit</button>
+    </div>
+</mat-card>
