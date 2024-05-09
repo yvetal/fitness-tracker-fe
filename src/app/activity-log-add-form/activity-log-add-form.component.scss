@@ -1,0 +1,30 @@
+.form-card {
+  box-shadow: 1 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  width: calc(100% - 40px);
+}
+
+.form-field {
+  width: 100%;
+  padding: 10px;
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.submit-button {
+  margin-left: 10px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  margin-left: 10px;
+}
