@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivityLogComponent } from '../activity-log/activity-log.component';
 import { ActivityLogService } from '../activity-log.service';
@@ -10,17 +10,10 @@ import { ActivityLogService } from '../activity-log.service';
   templateUrl: './activity-log-list.component.html',
   styleUrl: './activity-log-list.component.scss'
 })
-export class ActivityLogListComponent implements OnInit {
-  response: any
+export class ActivityLogListComponent{
+  @Input()
+  activityLogs: any
   constructor(private service: ActivityLogService) { }
 
-  ngOnInit(): void {
-    this.fetchActivityLogs();
-  }
 
-  fetchActivityLogs(): void {
-    this.service.getActivityLogs().subscribe((response) => {
-      this.response = response
-    })
-  }
 }

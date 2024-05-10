@@ -7,6 +7,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
+import { Output, EventEmitter } from '@angular/core';
+
 @Component({
   selector: 'app-activity-log-add-form',
   standalone: true,
@@ -27,10 +29,12 @@ export class ActivityLogAddFormComponent {
   intensityControl = new FormControl('');
   durationHoursControl = new FormControl('');
   durationMinutesControl = new FormControl('');
+  
+  @Output() newItemEvent = new EventEmitter<Object>();
+
   constructor(private service: ActivityLogService) { }
   submit() {
-    console.log(this.typeControl)
-    this.service.addActivityLog({
+    let addedActivityLog = {
       'type': this.typeControl.value,
       'duration': {
         'hours': parseInt(this.durationHoursControl.value || '0'),
@@ -40,11 +44,8 @@ export class ActivityLogAddFormComponent {
 
       "calories": parseInt(this.caloriesControl.value || '0'),
       "intensity": this.intensityControl.value
-    })
-    this.service.getActivityLogs().subscribe(
-      (response) => {
-        console.log(response)
-      }
-    )
+    }
+    
+    this.newItemEvent.emit(addedActivityLog);
   }
 }
