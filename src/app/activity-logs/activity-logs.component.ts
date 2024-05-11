@@ -2,8 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivityLogAddFormComponent } from '../activity-log-add-form/activity-log-add-form.component';
 import { ActivityLogListComponent } from '../activity-log-list/activity-log-list.component';
 import { ActivityLogService } from '../activity-log.service';
-import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -19,9 +17,6 @@ export class ActivityLogsComponent implements OnInit{
   
   constructor(private service: ActivityLogService) { }
 
-  authService = inject(AuthService);
-  router = inject(Router);
-
   ngOnInit() {
     this.getActivityLogs()
   }
@@ -31,21 +26,18 @@ export class ActivityLogsComponent implements OnInit{
       (response) => {
         this.response = response
         this.activityLogs = this.response.data
-        console.log(this.activityLogs)
+        console.log('Activity logs: ' + this.activityLogs)
       }
     )
   }
 
   addActivityLog(activityLog: object) {
+    console.log('Adding')
     this.service.addActivityLog(activityLog).subscribe(
       (response) => {
         console.log(response)
       }
     )
     this.getActivityLogs()
-  }
-  public logout(){
-    this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }

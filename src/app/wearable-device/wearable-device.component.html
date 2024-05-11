@@ -1,0 +1,31 @@
+<!-- wearable-devices.component.html -->
+
+<mat-card class="device-card">
+    <mat-card-header>
+      <div class="header-content">
+        <mat-icon fontIcon="device_hub"></mat-icon>
+        <h2 class="header">Wearable Devices</h2>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="connectedDevice">
+        <p>Connected Device: {{ connectedDevice }}</p>
+        <p>Device ID: {{ deviceId }}</p>
+        <button mat-raised-button color="primary" (click)="disconnectDevice()">Disconnect Device</button>
+      </div>
+      <div *ngIf="!connectedDevice">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Device Name" [formControl]="deviceNameControl">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addDevice()">Add Device</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card *ngIf="connectedDevice" class="device-info-card">
+    <mat-card-content>
+      <p>Connected Device: {{ connectedDevice }}</p>
+      <p>Device ID: {{ deviceId }}</p>
+    </mat-card-content>
+  </mat-card>
+  
