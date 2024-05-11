@@ -1,33 +1,46 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivityLogService {
-  activityLogs = [
-    {
-      "type": "Cycling",
-      "distance": 30,
-      "calories": 520,
-      "intensity": 1,
-      "duration": 120
-    }, {
-      "type": "Running",
-      "distance": 10,
-      "calories": 1000,
-      "intensity": 4,
-      "duration": 60
-    }
-  ]
-
-  constructor() { }
+  activityLogs = {
+    "data": [
+            {
+                "_id": "663f136fe3ee98c5410e8df8",
+                "type": "string",
+                "distance": 0,
+                "calories": 0,
+                "intensity": 0,
+                "duration": 0
+            },
+            {
+                "_id": "663f1f3d3c5cd7a282e16d31",
+                "type": "string",
+                "distance": 1,
+                "calories": 0,
+                "intensity": 0,
+                "duration": 0
+            }
+    ],
+    "code": 200,
+    "message": "Activity Log data retrieved successfully"
+}
+  constructor(private httpClient: HttpClient) { }
 
   getActivityLogs() {
-    return of(this.activityLogs)
+    
+    console.log('Getting logs')
+    return this.httpClient.get('http://localhost:8000/activity-logs')
+    // return of(this.activityLogs.data)
   }
 
   addActivityLog(activityLog: any) {
-    this.activityLogs = this.activityLogs.concat(activityLog)
+    console.log(activityLog)
+    return this.httpClient.post('http://localhost:8000/activity-logs', activityLog)
+    // this.activityLogs.data = this.activityLogs.data.concat(activityLog)
   }
 }

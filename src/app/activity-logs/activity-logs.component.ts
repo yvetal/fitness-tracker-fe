@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './activity-logs.component.scss'
 })
 export class ActivityLogsComponent implements OnInit{
+  response: any
   activityLogs: any
   
   constructor(private service: ActivityLogService) { }
@@ -28,14 +29,15 @@ export class ActivityLogsComponent implements OnInit{
   getActivityLogs() {
     this.service.getActivityLogs().subscribe(
       (response) => {
-        this.activityLogs = response
+        this.response = response
+        this.activityLogs = this.response.data
+        console.log(this.activityLogs)
       }
     )
   }
 
   addActivityLog(activityLog: object) {
-    this.service.addActivityLog(activityLog)
-    this.service.getActivityLogs().subscribe(
+    this.service.addActivityLog(activityLog).subscribe(
       (response) => {
         console.log(response)
       }

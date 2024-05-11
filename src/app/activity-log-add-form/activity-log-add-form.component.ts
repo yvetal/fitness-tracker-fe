@@ -39,7 +39,7 @@ export class ActivityLogAddFormComponent {
       'distance': parseInt(this.distanceControl.value || '0'),
 
       "calories": parseInt(this.caloriesControl.value || '0'),
-      "intensity": this.intensityControl.value
+      "intensity": parseInt(this.caloriesControl.value || '0')
     }
     
     this.newItemEvent.emit(addedActivityLog);
