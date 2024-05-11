@@ -6,20 +6,20 @@ import { of } from 'rxjs';
 })
 export class ActivityLogService {
   activityLogs = [
-      {
-        "duration": 30,
-        "distanceInKm": 30,
-        "calories": 520,
-        "intensity": "High",
-        "type": "Cycling"
-      }, {
-        "duration": 60,
-        "distanceInKm": 10,
-        "calories": 500,
-        "intensity": "Low",
-        "type": "Running"
-      }
-    ]
+    {
+      "type": "Cycling",
+      "distance": 30,
+      "calories": 520,
+      "intensity": 1,
+      "duration": 120
+    }, {
+      "type": "Running",
+      "distance": 10,
+      "calories": 1000,
+      "intensity": 4,
+      "duration": 60
+    }
+  ]
 
   constructor() { }
 

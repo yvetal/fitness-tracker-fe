@@ -36,7 +36,7 @@ export class ActivityLogAddFormComponent {
     let addedActivityLog = {
       'type': this.typeControl.value,
       'duration':  parseInt(this.durationControl.value || '0'),
-      'distanceInKm': parseInt(this.distanceControl.value || '0'),
+      'distance': parseInt(this.distanceControl.value || '0'),
 
       "calories": parseInt(this.caloriesControl.value || '0'),
       "intensity": this.intensityControl.value
