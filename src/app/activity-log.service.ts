@@ -32,15 +32,22 @@ export class ActivityLogService {
   constructor(private httpClient: HttpClient) { }
 
   getActivityLogs() {
-    
-    console.log('Getting logs')
-    return this.httpClient.get('http://localhost:8000/activity-logs')
+      return this.httpClient.get('http://localhost:8000/activity-logs')
     // return of(this.activityLogs)
   }
 
   addActivityLog(activityLog: any) {
     console.log(activityLog)
     return this.httpClient.post('http://localhost:8000/activity-logs', activityLog)
+    // this.activityLogs.data = this.activityLogs.data.concat(activityLog)
+    return of({})
+  }
+
+  getGoals() {
+    return this.httpClient.get('http://localhost:8000/goals')
+  }
+  addGoal(goal: any) {
+    return this.httpClient.post('http://localhost:8000/goals', goal)
     // this.activityLogs.data = this.activityLogs.data.concat(activityLog)
     return of({})
   }

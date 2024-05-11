@@ -1,0 +1,38 @@
+.compact-card {
+    width: 300px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .mat-card-header {
+    padding: 8px 16px;
+  }
+  
+  .mat-card-content {
+    padding: 8px 16px;
+  }
+  
+  .mat-card-subtitle {
+    padding: 5px;
+  }
+  
+  .mat-card-actions {
+    justify-content: flex-end;
+  }
+  
+  .calories-icon {
+    color: rgb(221, 21, 64);
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  
+  .intensity-icon {
+    color: rgb(14, 118, 2);
+    vertical-align: middle;
+    margin-right: 5px;
+  }
