@@ -7,6 +7,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
+import { Output, EventEmitter } from '@angular/core';
+
 @Component({
   selector: 'app-activity-log-add-form',
   standalone: true,
@@ -25,26 +27,21 @@ export class ActivityLogAddFormComponent {
   distanceControl = new FormControl('');
   caloriesControl = new FormControl('');
   intensityControl = new FormControl('');
-  durationHoursControl = new FormControl('');
-  durationMinutesControl = new FormControl('');
+  durationControl = new FormControl('');
+  
+  @Output() newItemEvent = new EventEmitter<Object>();
+
   constructor(private service: ActivityLogService) { }
   submit() {
-    console.log(this.typeControl)
-    this.service.addActivityLog({
+    let addedActivityLog = {
       'type': this.typeControl.value,
-      'duration': {
-        'hours': parseInt(this.durationHoursControl.value || '0'),
-        'minutes': parseInt(this.durationMinutesControl.value || '0'),
-      },
-      'distanceInKm': parseInt(this.distanceControl.value || '0'),
+      'duration':  parseInt(this.durationControl.value || '0'),
+      'distance': parseInt(this.distanceControl.value || '0'),
 
       "calories": parseInt(this.caloriesControl.value || '0'),
-      "intensity": this.intensityControl.value
-    })
-    this.service.getActivityLogs().subscribe(
-      (response) => {
-        console.log(response)
-      }
-    )
+      "intensity": parseInt(this.caloriesControl.value || '0')
+    }
+    
+    this.newItemEvent.emit(addedActivityLog);
   }
 }
