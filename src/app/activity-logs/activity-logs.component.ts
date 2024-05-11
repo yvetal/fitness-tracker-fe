@@ -18,6 +18,9 @@ export class ActivityLogsComponent implements OnInit{
   
   constructor(private service: ActivityLogService) { }
 
+  authService = inject(AuthService);
+  router = inject(Router);
+
   ngOnInit() {
     this.getActivityLogs()
   }
@@ -39,8 +42,6 @@ export class ActivityLogsComponent implements OnInit{
     )
     this.getActivityLogs()
   }
-  authService = inject(AuthService);
-  router = inject(Router);
   public logout(){
     this.authService.logout();
     this.router.navigate(['/login']);

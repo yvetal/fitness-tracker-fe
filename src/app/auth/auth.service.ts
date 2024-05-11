@@ -10,8 +10,7 @@ export class AuthService {
     //   .pipe(tap((result) => {
       if(data.userid == 'admin' && data.password == 'admin')
       {
-        console.log(data)
-        localStorage.setItem('authUser', 'temp');
+        localStorage.setItem('authUser', data.userid);
       }
       // }));
       return of(false)

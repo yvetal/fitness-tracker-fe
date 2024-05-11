@@ -7,19 +7,13 @@ import { of } from 'rxjs';
 export class ActivityLogService {
   activityLogs = [
       {
-        "duration": {
-          "hours": 1,
-          "minutes": 30
-        },
+        "duration": 30,
         "distanceInKm": 30,
         "calories": 520,
         "intensity": "High",
         "type": "Cycling"
       }, {
-        "duration": {
-          "hours": 0,
-          "minutes": 30
-        },
+        "duration": 60,
         "distanceInKm": 10,
         "calories": 500,
         "intensity": "Low",

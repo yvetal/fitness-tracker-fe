@@ -31,13 +31,7 @@
         <mat-grid-tile>
             <mat-form-field class="form-field">
                 <mat-icon fontIcon="timer"></mat-icon>
-                <input matInput type="number" placeholder="Duration - hours" [formControl]="durationHoursControl">
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-form-field class="form-field">
-                <mat-icon fontIcon="today"></mat-icon>
-                <input matInput type="number" placeholder="Duration - minutes" [formControl]="durationMinutesControl">
+                <input matInput type="number" placeholder="Duration in minutes" [formControl]="durationControl">
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
