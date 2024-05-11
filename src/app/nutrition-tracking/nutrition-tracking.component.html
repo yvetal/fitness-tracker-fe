@@ -1,0 +1,28 @@
+<!-- nutrition-tracking.component.html -->
+
+<mat-card class="nutrition-card">
+    <mat-card-header>
+      <div class="header-content">
+        <mat-icon fontIcon="local_dining"></mat-icon>
+        <h2 class="header">Nutrition Tracking</h2>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Meal Name" [formControl]="mealNameControl">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="number" placeholder="Calories" [formControl]="caloriesControl">
+      </mat-form-field>
+      <div class="button-group">
+        <button mat-raised-button color="primary" (click)="addMeal()">Add Meal</button>
+        <button mat-raised-button color="accent" (click)="getMeals()">Get Meals</button>
+      </div>
+      <div *ngIf="meals">
+        <div *ngFor="let meal of meals">
+          <p>{{ meal.name }} - {{ meal.Calories }} calories</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
