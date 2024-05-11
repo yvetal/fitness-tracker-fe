@@ -35,12 +35,13 @@ export class ActivityLogService {
     
     console.log('Getting logs')
     return this.httpClient.get('http://localhost:8000/activity-logs')
-    // return of(this.activityLogs.data)
+    // return of(this.activityLogs)
   }
 
   addActivityLog(activityLog: any) {
     console.log(activityLog)
     return this.httpClient.post('http://localhost:8000/activity-logs', activityLog)
     // this.activityLogs.data = this.activityLogs.data.concat(activityLog)
+    return of({})
   }
 }
