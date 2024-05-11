@@ -1,0 +1,44 @@
+.goal-card {
+    width: 100%;
+    max-width: none;
+    margin: 20px auto;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2), 0px 16px 32px rgba(0, 0, 0, 0.2);
+    /* Increased shadow depth */
+}
+
+.mat-card-actions {
+    justify-content: flex-end;
+    /* Align buttons to the right */
+}
+
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    margin-left: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 columns for the 5 form fields */
+    grid-gap: 10px;
+    /* Add gap between grid items */
+}
+
+.grid-item {
+    width: 100%;
+}
+
+.mat-card-actions {
+    justify-content: flex-end;
+    /* Align buttons to the right */
+}
+
+.button {
+    margin-right: 10px;
+    /* Add margin to the right of the button */
+}

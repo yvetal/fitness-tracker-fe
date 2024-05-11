@@ -1,0 +1,37 @@
+<mat-card class="goal-card">
+    <mat-card-header>
+      <div class="header-content">
+        <mat-icon fontIcon="fitness_center"></mat-icon>
+        <h2 class="header">Goal Setting</h2>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="grid-container">
+        <mat-form-field class="grid-item">
+          <input matInput placeholder="Current Activity Level" [formControl]="currentActivityLevelControl">
+        </mat-form-field>
+        <mat-form-field class="grid-item">
+          <input matInput type="number" placeholder="Current Weight" [formControl]="currentWeightControl">
+        </mat-form-field>
+        <mat-form-field class="grid-item">
+          <input matInput type="number" placeholder="Current Height" [formControl]="currentHeightControl">
+        </mat-form-field>
+        <mat-form-field class="grid-item">
+          <input matInput placeholder="Goal (weight_loss, weight_gain, weight_maintain)" [formControl]="goalControl">
+        </mat-form-field>
+        <mat-form-field class="grid-item">
+          <input matInput placeholder="Difficulty" [formControl]="difficultyControl">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-icon-button>
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>share</mat-icon>
+      </button>
+      <button mat-raised-button color="primary" class="button" (click)="submitGoal()">Set Goal</button>
+    </mat-card-actions>
+  </mat-card>
+  

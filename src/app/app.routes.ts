@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { ActivityLogsComponent } from './activity-logs/activity-logs.component';
+import { HomeTabComponent } from './home-tab/home-tab.component';
 import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
@@ -11,6 +11,6 @@ export const routes: Routes = [
         path: 'login', component: LoginComponent
     },
     {
-        path: 'activityLogs', component: ActivityLogsComponent, canActivate: [authGuard]
+        path: 'homeTab', component: HomeTabComponent, canActivate: [authGuard]
     },
 ];
