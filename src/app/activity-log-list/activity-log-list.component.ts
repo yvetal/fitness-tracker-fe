@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivityLogComponent } from '../activity-log/activity-log.component';
-import { ActivityLogService } from '../activity-log.service';
 
 @Component({
   selector: 'app-activity-log-list',
@@ -13,7 +12,6 @@ import { ActivityLogService } from '../activity-log.service';
 export class ActivityLogListComponent{
   @Input()
   activityLogs: any
-  constructor(private service: ActivityLogService) { }
-
+  constructor() { }
 
 }

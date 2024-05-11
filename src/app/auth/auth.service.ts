@@ -19,7 +19,12 @@ export class AuthService {
     localStorage.removeItem('authUser');
   }
   isLoggedIn() {
-    return localStorage.getItem('authUser') !== null;
+    try {
+      return localStorage.getItem('authUser') !== null;
+    }
+    catch {
+      return false
+    }
   }
   constructor() { }
 }
