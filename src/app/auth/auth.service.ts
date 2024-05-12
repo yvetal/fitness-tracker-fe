@@ -1,19 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  response: any
+  constructor(private httpClient: HttpClient) { }
   login(data: any) {
-    // return this.httpClient.post(`${this.baseUrl}/login`, data)
-    //   .pipe(tap((result) => {
-      if(data.userid == 'admin' && data.password == 'admin')
-      {
-        localStorage.setItem('authUser', data.userid);
-      }
-      // }));
-      return of(false)
+      return this.httpClient.post('http://localhost:8000/users/login', data).pipe(tap((response) => {
+        this.response = response
+        if(this.response.data == 'Success')
+        {
+          localStorage.setItem('authUser', data.userid);
+        }
+      }))
   }
   logout() {
     localStorage.removeItem('authUser');
@@ -26,5 +28,4 @@ export class AuthService {
       return false
     }
   }
-  constructor() { }
 }

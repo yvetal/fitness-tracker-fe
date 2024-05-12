@@ -1,0 +1,10 @@
+<form class="form-group" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput name="userid" formControlName="userid" placeholder="User ID">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input matInput type="password" formControlName="password" placeholder="Password">
+    </mat-form-field>
+    <button mat-button>Submit</button>
+</form>

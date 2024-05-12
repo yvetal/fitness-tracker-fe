@@ -4,31 +4,33 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
+import { ActivityLogService } from '../activity-log.service';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule, MatInputModule, MatButtonModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss'
 })
-export class LoginComponent {
-  authService = inject(AuthService);
+export class RegisterComponent {
+  response: any
   router = inject(Router);
-  protected loginForm = new FormGroup({
+  protected registerForm = new FormGroup({
     userid: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   })
+  constructor(private service: ActivityLogService) {}
   onSubmit(){
-    if(this.loginForm.valid){
-      console.log(this.loginForm.value);
-      this.authService.login(this.loginForm.value)
-      .subscribe((data: any) => {
-        if(this.authService.isLoggedIn()){
-          this.router.navigate(['/homeTab']);
+    if(this.registerForm.valid){
+      console.log(this.registerForm.value);
+      this.service.addUser(this.registerForm.value)
+      .subscribe((response: any) => {
+        this.response = response
+        if(this.response.code == 200){
+          this.router.navigate(['/login']);
         }
         else {
-          alert('Username or password is invalid!')
+          alert('Could not create user!')
         }
       });
     }

@@ -29,4 +29,7 @@ export class ActivityLogService {
     goal['userid'] = this.userid
     return this.httpClient.post('http://localhost:8000/goals', goal)
   }
+  addUser(user: any) {
+    return this.httpClient.post('http://localhost:8000/users', user)
+  }
 }
