@@ -16,11 +16,10 @@
       </mat-form-field>
       <div class="button-group">
         <button mat-raised-button color="primary" (click)="addMeal()">Add Meal</button>
-        <button mat-raised-button color="accent" (click)="getMeals()">Get Meals</button>
       </div>
       <div *ngIf="meals">
         <div *ngFor="let meal of meals">
-          <p>{{ meal.name }} - {{ meal.Calories }} calories</p>
+          <p>{{ meal.name }} - {{ meal.calories }} calories</p>
         </div>
       </div>
     </mat-card-content>

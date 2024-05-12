@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { ActivityLogService } from '../activity-log.service';
 // import { NutritionService } from '../nutrition.service';
 
 @Component({
@@ -30,35 +31,29 @@ export class NutritionTrackingComponent {
   caloriesControl = new FormControl('');
   meals: any[] | undefined;
 
-  // constructor(private nutritionService: NutritionService) { }
+  constructor(private service: ActivityLogService) { }
 
   addMeal() {
     const requestBody = {
-      Name: this.mealNameControl.value,
-      Calories: this.caloriesControl.value
+      name: this.mealNameControl.value,
+      calories: this.caloriesControl.value
     };
 
-    // this.nutritionService.addMeal(requestBody).subscribe(
-    //   (response: any) => {
-    //     console.log("Meal added successfully:", response);
-    //     // Handle response accordingly
-    //   },
-    //   (error: any) => {
-    //     console.error("Error adding meal:", error);
-    //     // Handle error accordingly
-    //   }
-    // );
+    this.service.addMeal(requestBody).subscribe(
+      (response: any) => {
+        this.getMeals()
+      }
+    );
   }
 
   getMeals() {
-  //   this.nutritionService.getMeals().subscribe(
-  //     (response: any) => {
-  //       this.meals = response.Meals;
-  //     },
-  //     (error: any) => {
-  //       console.error("Error getting meals:", error);
-  //       // Handle error accordingly
-  //     }
-  //   );
+    this.service.getMeals().subscribe(
+      (response: any) => {
+        this.meals = response.data;
+      }
+    );
+  }
+  ngOnInit() {
+    this.getMeals()
   }
 }
