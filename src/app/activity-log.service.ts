@@ -32,4 +32,14 @@ export class ActivityLogService {
   addUser(user: any) {
     return this.httpClient.post('http://localhost:8000/users', user)
   }
+  addDevice(device: any) {
+    device['userid'] = this.userid
+    return this.httpClient.post('http://localhost:8000/device', device)
+  }
+  getDevice() {
+    return this.httpClient.get('http://localhost:8000/device/?userid='+this.userid)
+  }
+  disconnectDevices() {
+    return this.httpClient.delete('http://localhost:8000/device/?userid='+this.userid)
+  }
 }

@@ -9,6 +9,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
+import { ActivityLogService } from '../activity-log.service';
 // import { DeviceService } from '../device.service';
 
 @Component({
@@ -30,42 +31,42 @@ import { MatInput } from '@angular/material/input';
 export class WearableDeviceComponent {
   deviceNameControl = new FormControl('');
   connectedDevice: string | undefined;
-  deviceId: number | undefined;
+  deviceId: string | undefined;
 
-  // constructor(private deviceService: DeviceService) { }
+  constructor(private service: ActivityLogService) { }
 
   addDevice() {
     const userId = 'user123'; // Replace with actual user ID
     const requestBody = {
-      deviceName: this.deviceNameControl.value
+      name: this.deviceNameControl.value
     };
 
-    // this.deviceService.addDevice(userId, requestBody).subscribe(
-    //   (response: any) => {
-    //     this.deviceId = response.deviceId;
-    //     this.connectedDevice = this.deviceNameControl.value;
-    //   },
-    //   (error: any) => {
-    //     console.error("Error adding device:", error);
-    //     // Handle error accordingly
-    //   }
-    // );
+    this.service.addDevice(requestBody).subscribe(
+      (response: any) => {
+        this.getDeviceData()
+      }
+    );
   }
-
+  ngOnInit() {
+    this.getDeviceData()
+  }
   getDeviceData() {
-    // const userId = 'user123'; // Replace with actual user ID
-
-    // this.deviceService.getDeviceData(userId).subscribe(
-    //   (response: any) => {
-    //     // Handle device data response accordingly
-    //   },
-    //   (error: any) => {
-    //     console.error("Error getting device data:", error);
-    //     // Handle error accordingly
-    //   }
-    // );
+    this.service.getDevice().subscribe(
+      (response: any) => {
+        console.log(response)
+        this.deviceId = response.data.deviceId;
+        this.connectedDevice = response.data.name || "";
+      }
+    );
   }
   disconnectDevice() {
-    
+    console.log('sisdfsd')
+    this.service.disconnectDevices().subscribe(
+      (response: any) => {
+        console.log(response)
+        this.deviceId = ""
+        this.connectedDevice = "";
+      }
+    )
   }
 }
