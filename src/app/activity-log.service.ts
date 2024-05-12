@@ -7,48 +7,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ActivityLogService {
-  activityLogs = {
-    "data": [
-            {
-                "_id": "663f136fe3ee98c5410e8df8",
-                "type": "string",
-                "distance": 0,
-                "calories": 0,
-                "intensity": 0,
-                "duration": 0
-            },
-            {
-                "_id": "663f1f3d3c5cd7a282e16d31",
-                "type": "string",
-                "distance": 1,
-                "calories": 0,
-                "intensity": 0,
-                "duration": 0
-            }
-    ],
-    "code": 200,
-    "message": "Activity Log data retrieved successfully"
-}
-  constructor(private httpClient: HttpClient) { }
+  userid: string
+  constructor(private httpClient: HttpClient) { 
+    this.userid = localStorage.getItem('authUser') || ""
+  }
 
   getActivityLogs() {
-      return this.httpClient.get('http://localhost:8000/activity-logs')
-    // return of(this.activityLogs)
+      return this.httpClient.get('http://localhost:8000/activity-logs?userid='+this.userid)
   }
 
   addActivityLog(activityLog: any) {
-    console.log(activityLog)
+    activityLog['userid'] = this.userid
     return this.httpClient.post('http://localhost:8000/activity-logs', activityLog)
-    // this.activityLogs.data = this.activityLogs.data.concat(activityLog)
     return of({})
   }
 
   getGoals() {
-    return this.httpClient.get('http://localhost:8000/goals')
+    return this.httpClient.get('http://localhost:8000/goals?userid='+this.userid)
   }
   addGoal(goal: any) {
+    goal['userid'] = this.userid
     return this.httpClient.post('http://localhost:8000/goals', goal)
-    // this.activityLogs.data = this.activityLogs.data.concat(activityLog)
-    return of({})
   }
 }
