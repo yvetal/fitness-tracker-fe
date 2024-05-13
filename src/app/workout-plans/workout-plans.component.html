@@ -36,4 +36,28 @@
       <button mat-raised-button color="accent" (click)="resetDefaults()">Reset Defaults</button>
     </mat-card-actions>
   </mat-card>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Workout Plan Name">    
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput formControlName="difficulty" placeholder="Difficulty">      
+    </mat-form-field>
+    <div formArrayName="elements">
+      <div *ngFor="let element of elements.controls; let i=index" [formGroupName]="i">
+        <mat-form-field>
+          <input matInput formControlName="type" placeholder="Activity">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="number" matInput formControlName="distance" placeholder="Distance"> 
+        </mat-form-field>   
+      </div>
+    </div>
   
+    <button mat-button type="button" (click)="addItem()">Add Element</button><br>
+  
+    <button mat-button type="submit">Submit</button>
+  </form>
