@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { ActivityLogService } from '../activity-log.service';
+import { MatInput, MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-workout-plans',
@@ -19,6 +21,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule , 
     MatIconModule , 
     ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
     MatButtonModule
   ],
   templateUrl: './workout-plans.component.html',
@@ -26,44 +30,49 @@ import {MatSelectModule} from '@angular/material/select';
 })
 export class WorkoutPlansComponent {
   difficultyControl = new FormControl('');
-  workoutName: string | undefined;
-  exercises: any[] | undefined;
+  workoutPlans: any
 
-  // constructor(private workoutService: WorkoutService) { }
-
-  addWorkoutPlan() {
-    const userId = 'user123'; // Replace with actual user ID
-    const requestBody = {
-      Exercise: {
-        name: this.workoutName,
-        instructions: '' // Add instructions if needed
+  constructor(private service: ActivityLogService, private formBuilder: FormBuilder) { }
+  getWorkoutPlans() {
+    this.service.getWorkoutPlans(this.difficultyControl.value).subscribe(
+      (response: any) => {
+        this.workoutPlans = response.data
       }
-    };
-
-    // this.workoutService.addWorkoutPlan(userId, requestBody).subscribe(
-    //   (response: any) => {
-    //     console.log("Workout plan added successfully:", response);
-    //     // Handle response accordingly
-    //   },
-    //   (error: any) => {
-    //     console.error("Error adding workout plan:", error);
-    //     // Handle error accordingly
-    //   }
-    // );
+    );
+  }
+  resetDefaults() {
+    this.service.resetWorkoutPlans().subscribe(
+      (response: any) => {
+        this.getWorkoutPlans()
+      }
+    );
   }
 
-  getWorkoutPlans() {
-    const difficulty = this.difficultyControl.value;
-
-    // this.workoutService.getWorkoutPlans(difficulty).subscribe(
-    //   (response: any) => {
-    //     this.workoutName = response.Workoutname;
-    //     this.exercises = response.Exercises;
-    //   },
-    //   (error: any) => {
-    //     console.error("Error getting workout plans:", error);
-    //     // Handle error accordingly
-    //   }
-    // );
+  form: any;
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      name: new FormControl(''),
+      difficulty: new FormControl(''),
+      elements: this.formBuilder.array([])
+    });
+  }
+  get elements(): FormArray {
+    return this.form.get('elements') as FormArray;
+  }
+  addItem(): void {
+    this.elements.push(
+      this.formBuilder.group({
+        type: new FormControl(''),
+        distance: new FormControl('')
+      })
+    );
+  }
+  onSubmit() {
+    console.log(this.form.value)
+    this.service.addWorkoutPlan(this.form.value).subscribe(
+      (response) => {
+        this.getWorkoutPlans()
+      }
+    )
   }
 }

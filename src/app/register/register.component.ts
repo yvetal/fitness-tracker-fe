@@ -7,7 +7,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ActivityLogService } from '../activity-log.service';
 import { MatCardModule } from '@angular/material/card';
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule, MatInputModule, MatButtonModule , MatCardModule],
   templateUrl: './register.component.html',
