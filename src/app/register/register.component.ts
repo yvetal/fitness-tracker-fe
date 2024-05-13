@@ -5,10 +5,11 @@ import { MatInputModule } from '@angular/material/input';
 import { inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ActivityLogService } from '../activity-log.service';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule , MatCardModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
