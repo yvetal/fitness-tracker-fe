@@ -43,7 +43,7 @@ export class WorkoutPlansComponent {
   resetDefaults() {
     this.service.resetWorkoutPlans().subscribe(
       (response: any) => {
-        
+        this.getWorkoutPlans()
       }
     );
   }
