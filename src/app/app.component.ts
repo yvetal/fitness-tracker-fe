@@ -5,12 +5,14 @@ import { ActivityLogListComponent } from "./activity-log-list/activity-log-list.
 import { HomeTabComponent } from "./home-tab/home-tab.component";
 import { GoalSettingComponent } from "./goal-setting/goal-setting.component";
 import { ActivityLogsComponent } from './activity-logs/activity-logs.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [RouterOutlet, ActivityLogsComponent,ActivityLogAddFormComponent, ActivityLogListComponent, HomeTabComponent,GoalSettingComponent]
+  imports: [RouterOutlet, MatToolbarModule]
 })
 export class AppComponent {
   title = 'fitness-tracker-fe';

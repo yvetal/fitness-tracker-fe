@@ -15,7 +15,6 @@ export class ActivityLogService {
   getActivityLogs() {
       return this.httpClient.get('http://localhost:8000/activity-logs?userid='+this.userid)
   }
-
   addActivityLog(activityLog: any) {
     activityLog['userid'] = this.userid
     return this.httpClient.post('http://localhost:8000/activity-logs', activityLog)
@@ -33,13 +32,13 @@ export class ActivityLogService {
   }
   addDevice(device: any) {
     device['userid'] = this.userid
-    return this.httpClient.post('http://localhost:8000/devices', device)
+    return this.httpClient.post('http://localhost:8000/device', device)
   }
   getDevice() {
-    return this.httpClient.get('http://localhost:8000/devices/?userid='+this.userid)
+    return this.httpClient.get('http://localhost:8000/device?userid='+this.userid)
   }
   disconnectDevices() {
-    return this.httpClient.delete('http://localhost:8000/devices/?userid='+this.userid)
+    return this.httpClient.delete('http://localhost:8000/device?userid='+this.userid)
   }
   getMeals() {
     return this.httpClient.get('http://localhost:8000/meals?userid='+this.userid)
@@ -47,5 +46,11 @@ export class ActivityLogService {
   addMeal(meal: any) {
     meal['userid'] = this.userid
     return this.httpClient.post('http://localhost:8000/meals', meal)
+  }
+  getWorkoutPlans(difficulty: any) {
+    return this.httpClient.get('http://localhost:8000/workout-plans?difficulty='+difficulty)
+  }
+  resetWorkoutPlans() {
+    return this.httpClient.get('http://localhost:8000/workout-plans/add-dummies')
   }
 }

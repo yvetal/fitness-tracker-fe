@@ -6,7 +6,7 @@ import { inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ActivityLogService } from '../activity-log.service';
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule, MatInputModule, MatButtonModule],
   templateUrl: './register.component.html',

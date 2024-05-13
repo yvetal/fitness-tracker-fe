@@ -11,23 +11,29 @@
       <div class="actions">
         <mat-form-field class="full-width">
           <mat-select placeholder="Select Difficulty" [formControl]="difficultyControl">
-            <mat-option value="beginner">Beginner</mat-option>
-            <mat-option value="intermediate">Intermediate</mat-option>
-            <mat-option value="advanced">Advanced</mat-option>
+            <mat-option value="Beginner">Beginner</mat-option>
+            <mat-option value="Intermediate">Intermediate</mat-option>
+            <mat-option value="Advanced">Advanced</mat-option>
           </mat-select>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="getWorkoutPlans()">Get Workout Plans</button>
+        <button mat-raised-button color="primary" disabled="{{difficultyControl.value == ''}}" (click)="getWorkoutPlans()">Get Workout Plans</button>
       </div>
-      <div *ngIf="workoutName">
-        <h3>{{ workoutName }}</h3>
-        <div *ngFor="let exercise of exercises">
-          <p>{{ exercise.name }}</p>
-          <p>{{ exercise.instructions }}</p>
-        </div>
+      <div *ngFor=" let plan of workoutPlans">
+        <mat-card class="workout-card">
+          <mat-card-title>
+            <h3 class="header">&nbsp;&nbsp;{{ plan.name }}</h3>
+          </mat-card-title>
+          <mat-card-content>
+            <div *ngFor="let exercise of plan.elements">
+              <p>{{ exercise.type }} - {{ exercise.distance }} km</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
       </div>
     </mat-card-content>
+    
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="addWorkoutPlan()">Add Workout Plan</button>
+      <button mat-raised-button color="accent" (click)="resetDefaults()">Reset Defaults</button>
     </mat-card-actions>
   </mat-card>
   

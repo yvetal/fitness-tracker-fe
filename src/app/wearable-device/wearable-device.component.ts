@@ -48,19 +48,22 @@ export class WearableDeviceComponent {
     );
   }
   ngOnInit() {
-    this.getDeviceData()
+    try {
+      this.getDeviceData()
+    }
+    catch {
+      
+    }
   }
   getDeviceData() {
     this.service.getDevice().subscribe(
       (response: any) => {
-        console.log(response)
         this.deviceId = response.data.deviceId;
         this.connectedDevice = response.data.name || "";
       }
     );
   }
   disconnectDevice() {
-    console.log('sisdfsd')
     this.service.disconnectDevices().subscribe(
       (response: any) => {
         console.log(response)
