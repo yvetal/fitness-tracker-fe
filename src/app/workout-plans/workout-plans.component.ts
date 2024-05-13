@@ -68,7 +68,6 @@ export class WorkoutPlansComponent {
     );
   }
   onSubmit() {
-    console.log(this.form.value)
     this.service.addWorkoutPlan(this.form.value).subscribe(
       (response) => {
         this.getWorkoutPlans()

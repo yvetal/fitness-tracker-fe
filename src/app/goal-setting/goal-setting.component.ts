@@ -46,7 +46,6 @@ export class GoalSettingComponent {
       (response) => {
         this.response = response
         this.goals = this.response.data
-        console.log('Goals: ' + this.goals)
       }
     )
   }
@@ -61,10 +60,10 @@ export class GoalSettingComponent {
     }
     this.service.addGoal(requestBody).subscribe(
       (response) => {
-        console.log(response)
+        this.getGoals()
       }
     )
-    this.getGoals()
+    
   }
 
 }
