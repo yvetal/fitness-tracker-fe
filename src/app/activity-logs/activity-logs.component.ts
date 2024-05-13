@@ -26,18 +26,15 @@ export class ActivityLogsComponent implements OnInit{
       (response) => {
         this.response = response
         this.activityLogs = this.response.data
-        console.log('Activity logs: ' + this.activityLogs)
       }
     )
   }
 
   addActivityLog(activityLog: object) {
-    console.log('Adding')
     this.service.addActivityLog(activityLog).subscribe(
-      (response) => {
-        console.log(response)
+      (response) => { 
+        this.getActivityLogs()
       }
     )
-    this.getActivityLogs()
   }
 }

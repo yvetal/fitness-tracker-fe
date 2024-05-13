@@ -23,12 +23,11 @@ export class RegisterComponent {
   constructor(private service: ActivityLogService) {}
   onSubmit(){
     if(this.registerForm.valid){
-      console.log(this.registerForm.value);
       this.service.addUser(this.registerForm.value)
       .subscribe((response: any) => {
         this.response = response
         if(this.response.code == 200){
-          this.router.navigate(['/login']);
+          alert('User added!')
         }
         else {
           alert('Could not create user!')
